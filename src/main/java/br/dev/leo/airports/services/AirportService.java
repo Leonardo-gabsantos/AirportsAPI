@@ -39,4 +39,8 @@ public class AirportService {
                 
         return resultDTO;
      }
+     public Airport findByIataCode(String iataCode){
+         Airport result = airportRepository.findByIataCode(iataCode);
+         return result;
+     }
 }
