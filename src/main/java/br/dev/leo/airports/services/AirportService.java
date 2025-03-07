@@ -4,6 +4,7 @@
  */
 package br.dev.leo.airports.services;
 
+import br.dev.leo.airports.DTO.AirportMinDTO;
 import br.dev.leo.airports.entities.Airport;
 import br.dev.leo.airports.repositories.AirportRepository;
 import java.util.List;
@@ -30,4 +31,12 @@ public class AirportService {
         List<Airport> result = airportRepository.findByCityIgnoreCase(city);
         return result;
     }
+     public List<AirportMinDTO> findByCountry(String country) {
+        List<Airport> resultAirport = airportRepository.findByCountryIgnoreCase(country);
+        
+        List <AirportMinDTO> resultDTO = resultAirport.stream()
+                .map(x -> new AirportMinDTO(x)).toList();
+                
+        return resultDTO;
+     }
 }
